@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class QuanLyHocSinh {
@@ -90,7 +91,7 @@ public class QuanLyHocSinh {
              FileOutputStream fos = new FileOutputStream(FILE_PATH)) {
 
             // Create a sheet
-            var sheet = workbook.createSheet("HocSinhData");
+            Sheet sheet = workbook.createSheet("HocSinhData");
 
             // Add header row
             Row headerRow = sheet.createRow(0);
@@ -121,40 +122,14 @@ public class QuanLyHocSinh {
         }
     }
 
-    public static void deleteRecord(int mahs) {
-        List<HocSinh> hocSinhs = readDataFromExcel();
-        hocSinhs.removeIf(hocSinh -> hocSinh.getMahs() == mahs);
-        writeDataToExcel(hocSinhs);
+    public boolean xoaHocSinh(int maHocSinh) {
+        for (int i = 0; i < danhSachHocSinh.size(); i++) {
+            if (danhSachHocSinh.get(i).getMahs() == maHocSinh) {
+                danhSachHocSinh.remove(i);
+                return true; // Xóa thành công
+            }
+        }
+        return false; // Không tìm thấy học sinh có mã
     }
 
-    public static void main(String[] args) {
-        // Example usage:
-        // Read data from Excel
-        List<HocSinh> hocSinhs = readDataFromExcel();
-
-        // Delete a record by ID
-        int mahsToDelete = 123; // Specify the ID to delete
-        deleteRecord(mahsToDelete);
-
-        // Write data to Excel
-        writeDataToExcel(hocSinhs);
-
-        // Your existing code...
-        QuanLyHocSinh quanLy = new QuanLyHocSinh();
-
-        quanLy.themHocSinh(new HocSinh(1, "Nguyen Van A", "10A", 8.5, 16, "Hanoi"));
-        quanLy.themHocSinh(new HocSinh(2, "Tran Thi B", "10B", 7.9, 15, "Hanoi"));
-        quanLy.themHocSinh(new HocSinh(3, "Le Van C", "10C", 9.2, 17, "Hanoi"));
-
-        int maCanTim = 2;
-        HocSinh hocSinhTimThay = quanLy.timKiemHocSinhTheoMa(maCanTim);
-
-        if (hocSinhTimThay != null) {
-            System.out.println("Thông tin học sinh có mã " + maCanTim + ":");
-            System.out.println(hocSinhTimThay);
-        } else {
-            System.out.println("Không tìm thấy học sinh có mã " + maCanTim);
-        }
-
-        int maCanSua = 2;
-        HocSinh hocSinhMoi =
+}

@@ -8,5 +8,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/Downloads/poi-5.2.4.jar"/>
 	<classpathentry kind="lib" path="D:/Downloads/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/download/poi-ooxml-5.2.3.jar"/>
+	<classpathentry kind="lib" path="D:/download/poi-5.2.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
