@@ -13,7 +13,6 @@ public class QuanLyHocSinh {
         danhSachHocSinh.add(hocSinh);
     }
 
-    // Bug introduced here: reversed comparison in the sorting logic
     public void sapXepHocSinhTheoDiem() {
         Collections.sort(danhSachHocSinh, (hs1, hs2) -> hs1.getDiem().compareTo(hs2.getDiem()));
     }
@@ -24,23 +23,54 @@ public class QuanLyHocSinh {
         }
     }
 
+    public HocSinh timKiemHocSinhTheoMa(int maHocSinh) {
+        for (HocSinh hs : danhSachHocSinh) {
+            if (hs.getMahs() == maHocSinh) {
+                return hs; // Học sinh được tìm thấy
+            }
+        }
+        return null;
+    }
+
+    public boolean suaThongTinHocSinh(int maHocSinh, HocSinh hocSinhMoi) {
+        for (int i = 0; i < danhSachHocSinh.size(); i++) {
+            if (danhSachHocSinh.get(i).getMahs() == maHocSinh) {
+                // Sửa thông tin học sinh
+                danhSachHocSinh.set(i, hocSinhMoi);
+                return true; // Sửa thành công
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        QuanLyHocSinh quanLyHocSinh = new QuanLyHocSinh();
+        QuanLyHocSinh quanLy = new QuanLyHocSinh();
 
-        // Thêm học sinh
-        quanLyHocSinh.themHocSinh(new HocSinh(1, "Nguyen Van A", "10A", 8.5, 15, "Ha Noi"));
-        quanLyHocSinh.themHocSinh(new HocSinh(2, "Tran Thi B", "10B", 9.0, 16, "Ho Chi Minh"));
-        quanLyHocSinh.themHocSinh(new HocSinh(3, "Le Van C", "10C", 7.8, 15, "Da Nang"));
+        quanLy.themHocSinh(new HocSinh(1, "Nguyen Van A", "10A", 8.5, 16, "Hanoi"));
+        quanLy.themHocSinh(new HocSinh(2, "Tran Thi B", "10B", 7.9, 15, "Hanoi"));
+        quanLy.themHocSinh(new HocSinh(3, "Le Van C", "10C", 9.2, 17, "Hanoi"));
 
-        // Hiển thị danh sách trước khi sắp xếp
-        System.out.println("Danh sach truoc khi sap xep:");
-        quanLyHocSinh.hienThiDanhSachHocSinh();
+        int maCanTim = 2;
+        HocSinh hocSinhTimThay = quanLy.timKiemHocSinhTheoMa(maCanTim);
 
-        // Sắp xếp học sinh theo điểm - Bug introduced here
-        quanLyHocSinh.sapXepHocSinhTheoDiem();
+        if (hocSinhTimThay != null) {
+            System.out.println("Thông tin học sinh có mã " + maCanTim + ":");
+            System.out.println(hocSinhTimThay);
+        } else {
+            System.out.println("Không tìm thấy học sinh có mã " + maCanTim);
+        }
 
-        // Hiển thị danh sách sau khi sắp xếp
-        System.out.println("\nDanh sach sau khi sap xep:");
-        quanLyHocSinh.hienThiDanhSachHocSinh();
+        int maCanSua = 2;
+        HocSinh hocSinhMoi = new HocSinh(2, "Tran Thi D", "10D", 8.0, 16, "Hanoi");
+        boolean ketQuaSua = quanLy.suaThongTinHocSinh(maCanSua, hocSinhMoi);
+
+        System.out.println("\nDanh sách học sinh sau khi sửa:");
+        quanLy.hienThiDanhSachHocSinh();
+
+        if (ketQuaSua) {
+            System.out.println("\nSửa thông tin thành công!");
+        } else {
+            System.out.println("\nKhông tìm thấy học sinh cần sửa!");
+        }
     }
 }
