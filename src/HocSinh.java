@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class HocSinh {
 	private int mahs;
@@ -54,10 +55,11 @@ public class HocSinh {
 	public void setDiachi(String diachi) {
 		this.diachi = diachi;
 	}
+	
 	@Override
 	public String toString() {
 		return "mã học sinh : " + mahs + ", tên học sinh : " + tensinh + ", lớp : " + lop + ", điểm : " + diem + ", tuổi : " + tuoi
-				+ ", địa chỉ : " + diachi;
+				+ ", địa chỉ: " + diachi;
 	}
 	@Override
 	public int hashCode() {
@@ -71,6 +73,11 @@ public class HocSinh {
 		result = prime * result + tuoi;
 		return result;
 	}
+    public String getFormattedDiem() {
+        // Format diem to one decimal place
+        DecimalFormat df = new DecimalFormat("#.#");
+        return df.format(diem);
+    }
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

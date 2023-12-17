@@ -1,9 +1,32 @@
 import java.util.Scanner;
 
+//import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+//import org.apache.poi.ss.usermodel.Cell;
+//import org.apache.poi.ss.usermodel.CellStyle;
+//import org.apache.poi.ss.usermodel.CellType;
+//import org.apache.poi.ss.usermodel.CreationHelper;
+//import org.apache.poi.ss.usermodel.Font;
+//import org.apache.poi.ss.usermodel.IndexedColors;
+//import org.apache.poi.ss.usermodel.Row;
+//import org.apache.poi.ss.usermodel.Sheet;
+//import org.apache.poi.ss.usermodel.Workbook;
+//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+//import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class Main {
     public static void main(String[] args) {
         QuanLyHocSinh quanLyHocSinh = new QuanLyHocSinh();
         Scanner scanner = new Scanner(System.in);
+        for (int i = 1; i <= 20; i++) {
+            int mahs = i;
+            String tensinh = "HocSinh " + i;
+            String lop = "Lop " + (i % 5 + 1); // Assigning students to 5 different classes
+            Double diem = Math.round(Math.random() * 100.0) / 10.0; // Rounded to one decimal place
+            int tuoi = 15 + i; // Assuming students have ages ranging from 15 to 34
+            String diachi = "DiaChi " + i;
+
+            HocSinh hocSinh = new HocSinh(mahs, tensinh, lop, diem, tuoi, diachi);
+            quanLyHocSinh.themHocSinh(hocSinh);
+        }
 
         while (true) {
             System.out.println("------ MENU ------");
@@ -13,7 +36,8 @@ public class Main {
             System.out.println("4. Tìm kiếm học sinh theo mã");
             System.out.println("5. Sửa thông tin học sinh");
             System.out.println("6. xóa học sinh");
-
+//            System.out.println("7. ghi xuống file excel");
+//            System.out.println("8. đọc file excel");
             System.out.println("0. Thoát");
 
             System.out.print("Nhập lựa chọn của bạn: ");
@@ -99,19 +123,20 @@ public class Main {
                         System.out.println("Không tìm thấy học sinh có mã " + maCanXoa);
                     }
                     break;   
-                case 7:
-                    // Read data from Excel
-                    List<HocSinh> excelData = readDataFromExcel();
-                    quanLyHocSinh.setDanhSachHocSinh(excelData);
-                    System.out.println("Đã đọc dữ liệu từ tệp Excel.");
-                    break;
+//                case 7:
+//                    System.out.print("Nhập đường dẫn tới tệp Excel để ghi: ");
+//                    String filePathGhi = scanner.next();
+//                    quanLyHocSinh.ghiFileExcel(quanLyHocSinh.getDanhSachHocSinh(), filePathGhi);
+//                    System.out.println("Đã ghi xuống file Excel thành công!");
+//                    break;
+//                case 8:
+                    // Đọc từ file Excel
+//                    System.out.print("Nhập đường dẫn tới tệp Excel để đọc: ");
+//                    String filePathDoc = scanner.next();
+//                    quanLyHocSinh.setDanhSachHocSinh(QuanLyHocSinh.readDataFromExcel(filePathDoc));
+//                    System.out.println("Đã đọc từ file Excel thành công!");
+//                    break;
 
-                case 8:
-                    // Write data to Excel
-                    List<HocSinh> currentData = quanLyHocSinh.getDanhSachHocSinh();
-                    writeDataToExcel(currentData);
-                    System.out.println("Đã ghi dữ liệu vào tệp Excel.");
-                    break;           
                 case 0:
                     System.out.println("Thoát chương trình.");
                     System.exit(0);
