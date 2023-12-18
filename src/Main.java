@@ -14,31 +14,36 @@ public class Main {
             System.out.println("5. Sửa thông tin học sinh");
             System.out.println("6. xóa học sinh");
 
-            System.out.println("0. Thoát");
+            System.out.println("0. Thoát chương trình");
 
             System.out.print("Nhập lựa chọn của bạn: ");
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    // Thêm học sinh
-                    System.out.print("Nhập mã học sinh: ");
-                    int maHocSinh = scanner.nextInt();
-                    System.out.print("Nhập tên học sinh: ");
-                    String tenHocSinh = scanner.next();
-                    System.out.print("Nhập lớp học: ");
-                    String lop = scanner.next();
-                    System.out.print("Nhập điểm học sinh: ");
-                    double diem = scanner.nextDouble();
-                    System.out.print("Nhập tuổi học sinh: ");
-                    int tuoi = scanner.nextInt();
-                    System.out.print("Nhập địa chỉ học sinh: ");
-                    String diaChi = scanner.next();
+            case 1:
+                // Thêm học sinh
+                System.out.print("Nhập mã học sinh: ");
+                int maHocSinh = scanner.nextInt();
+                System.out.print("Nhập tên học sinh: ");
+                String tenHocSinh = scanner.next();
+                System.out.print("Nhập lớp học: ");
+                String lop = scanner.next();
+                System.out.print("Nhập điểm học sinh: ");
+                double diem = scanner.nextDouble();
+                System.out.print("Nhập tuổi học sinh: ");
+                int tuoi = scanner.nextInt();
+                System.out.print("Nhập địa chỉ học sinh: ");
+                String diaChi = scanner.next();
 
-                    HocSinh hocSinh = new HocSinh(maHocSinh, tenHocSinh, lop, diem, tuoi, diaChi);
-                    quanLyHocSinh.themHocSinh(hocSinh);
+                HocSinh hocSinh = new HocSinh(maHocSinh, tenHocSinh, lop, diem, tuoi, diaChi);
+
+                // Thực hiện thêm học sinh và kiểm tra kết quả
+                if (quanLyHocSinh.themHocSinh(hocSinh)) {
                     System.out.println("Thêm học sinh thành công!");
-                    break;
+                } else {
+                    System.out.println("Mã học sinh đã tồn tại, không thể thêm!");
+                }
+                break;
 
                 case 2:
                     // Sắp xếp học sinh theo điểm
@@ -99,19 +104,19 @@ public class Main {
                         System.out.println("Không tìm thấy học sinh có mã " + maCanXoa);
                     }
                     break;   
-                case 7:
-                    // Read data from Excel
-                    List<HocSinh> excelData = readDataFromExcel();
-                    quanLyHocSinh.setDanhSachHocSinh(excelData);
-                    System.out.println("Đã đọc dữ liệu từ tệp Excel.");
-                    break;
-
-                case 8:
-                    // Write data to Excel
-                    List<HocSinh> currentData = quanLyHocSinh.getDanhSachHocSinh();
-                    writeDataToExcel(currentData);
-                    System.out.println("Đã ghi dữ liệu vào tệp Excel.");
-                    break;           
+//                case 7:
+//                    // Read data from Excel
+//                    List<HocSinh> excelData = readDataFromExcel();
+//                    quanLyHocSinh.setDanhSachHocSinh(excelData);
+//                    System.out.println("Đã đọc dữ liệu từ tệp Excel.");
+//                    break;
+//
+//                case 8:
+//                    // Write data to Excel
+//                    List<HocSinh> currentData = quanLyHocSinh.getDanhSachHocSinh();
+//                    writeDataToExcel(currentData);
+//                    System.out.println("Đã ghi dữ liệu vào tệp Excel.");
+//                    break;           
                 case 0:
                     System.out.println("Thoát chương trình.");
                     System.exit(0);
