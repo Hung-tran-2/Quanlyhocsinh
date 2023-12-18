@@ -1,18 +1,8 @@
+package src;
+
 import java.util.Scanner;
 
-//import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellStyle;
-//import org.apache.poi.ss.usermodel.CellType;
-//import org.apache.poi.ss.usermodel.CreationHelper;
-//import org.apache.poi.ss.usermodel.Font;
-//import org.apache.poi.ss.usermodel.IndexedColors;
-//import org.apache.poi.ss.usermodel.Row;
-//import org.apache.poi.ss.usermodel.Sheet;
-//import org.apache.poi.ss.usermodel.Workbook;
-//import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-//import org.apache.poi.xssf.usermodel.XSSFSheet;
-public class Main {
+public class Main { 
     public static void main(String[] args) {
         QuanLyHocSinh quanLyHocSinh = new QuanLyHocSinh();
         Scanner scanner = new Scanner(System.in);
@@ -36,33 +26,35 @@ public class Main {
             System.out.println("4. Tìm kiếm học sinh theo mã");
             System.out.println("5. Sửa thông tin học sinh");
             System.out.println("6. xóa học sinh");
-//            System.out.println("7. ghi xuống file excel");
-//            System.out.println("8. đọc file excel");
-            System.out.println("0. Thoát");
 
             System.out.print("Nhập lựa chọn của bạn: ");
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    // Thêm học sinh
-                    System.out.print("Nhập mã học sinh: ");
-                    int maHocSinh = scanner.nextInt();
-                    System.out.print("Nhập tên học sinh: ");
-                    String tenHocSinh = scanner.next();
-                    System.out.print("Nhập lớp học: ");
-                    String lop = scanner.next();
-                    System.out.print("Nhập điểm học sinh: ");
-                    double diem = scanner.nextDouble();
-                    System.out.print("Nhập tuổi học sinh: ");
-                    int tuoi = scanner.nextInt();
-                    System.out.print("Nhập địa chỉ học sinh: ");
-                    String diaChi = scanner.next();
+            case 1:
+                // Thêm học sinh
+                System.out.print("Nhập mã học sinh: ");
+                int maHocSinh = scanner.nextInt();
+                System.out.print("Nhập tên học sinh: ");
+                String tenHocSinh = scanner.next();
+                System.out.print("Nhập lớp học: ");
+                String lop = scanner.next();
+                System.out.print("Nhập điểm học sinh: ");
+                double diem = scanner.nextDouble();
+                System.out.print("Nhập tuổi học sinh: ");
+                int tuoi = scanner.nextInt();
+                System.out.print("Nhập địa chỉ học sinh: ");
+                String diaChi = scanner.next();
 
-                    HocSinh hocSinh = new HocSinh(maHocSinh, tenHocSinh, lop, diem, tuoi, diaChi);
-                    quanLyHocSinh.themHocSinh(hocSinh);
+                HocSinh hocSinh = new HocSinh(maHocSinh, tenHocSinh, lop, diem, tuoi, diaChi);
+
+                // Thực hiện thêm học sinh và kiểm tra kết quả
+                if (quanLyHocSinh.themHocSinh(hocSinh)) {
                     System.out.println("Thêm học sinh thành công!");
-                    break;
+                } else {
+                    System.out.println("Mã học sinh đã tồn tại, không thể thêm!");
+                }
+                break;
 
                 case 2:
                     // Sắp xếp học sinh theo điểm
@@ -112,31 +104,31 @@ public class Main {
                     break;
                   
                 case 6:
-                    System.out.print("Nhập mã học sinh cần xóa: ");
-                    int maCanXoa = scanner.nextInt();
-                    scanner.nextLine(); // Consume the newline character
+                    int maCanXoa = 0;  // Khởi tạo biến để lưu mã học sinh cần xóa
+                    
+                    // Sử dụng vòng lặp để đảm bảo người dùng nhập vào một số nguyên
+                    while (true) {
+                        System.out.print("Nhập mã học sinh cần xóa: ");
+                        
+                        // Kiểm tra xem người dùng đã nhập một số nguyên chưa
+                        if (scanner.hasNextInt()) {
+                            maCanXoa = scanner.nextInt();
+                            break;  // Thoát khỏi vòng lặp nếu đã nhập đúng kiểu dữ liệu
+                        } else {
+                            System.out.println("Vui lòng nhập một số nguyên.");
+                            scanner.nextLine();  // Loại bỏ đầu vào không hợp lệ
+                        }
+                    }
+                    
+                    // Consume the newline character
+                    scanner.nextLine();
 
-                    boolean xoaThanhCong = quanLyHocSinh.xoaHocSinh(maCanXoa);
+                    boolean xoaThanhCong = quanLyHocSinh.xoahocsinh(maCanXoa);
                     if (xoaThanhCong) {
                         System.out.println("Xóa học sinh thành công!");
                     } else {
                         System.out.println("Không tìm thấy học sinh có mã " + maCanXoa);
                     }
-                    break;   
-//                case 7:
-//                    System.out.print("Nhập đường dẫn tới tệp Excel để ghi: ");
-//                    String filePathGhi = scanner.next();
-//                    quanLyHocSinh.ghiFileExcel(quanLyHocSinh.getDanhSachHocSinh(), filePathGhi);
-//                    System.out.println("Đã ghi xuống file Excel thành công!");
-//                    break;
-//                case 8:
-                    // Đọc từ file Excel
-//                    System.out.print("Nhập đường dẫn tới tệp Excel để đọc: ");
-//                    String filePathDoc = scanner.next();
-//                    quanLyHocSinh.setDanhSachHocSinh(QuanLyHocSinh.readDataFromExcel(filePathDoc));
-//                    System.out.println("Đã đọc từ file Excel thành công!");
-//                    break;
-
                 case 0:
                     System.out.println("Thoát chương trình.");
                     System.exit(0);

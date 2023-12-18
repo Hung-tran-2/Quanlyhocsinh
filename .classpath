@@ -1,22 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/ant-1.10.14.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/ant-launcher-1.10.14.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/xmlbeans-5.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/xmlbeans-5.2.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/xmlbeans-5.2.0-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/xmlresolver-5.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/xmlbeans-bin-5.2.0-20231108/xmlbeans-5.2.0/lib/xmlresolver-5.2.0-data.jar"/>
-	<classpathentry kind="lib" path="D:/download/poi-ooxml-5.2.3.jar"/>
-	<classpathentry kind="lib" path="D:/download/poi-5.2.3-javadoc.jar"/>
-	<classpathentry kind="lib" path="D:/download/poi-5.2.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/commons-collections4-4.4-bin/commons-collections4-4.4/commons-collections4-4.4-test-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/commons-collections4-4.4-bin/commons-collections4-4.4/commons-collections4-4.4-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/commons-collections4-4.4-bin/commons-collections4-4.4/commons-collections4-4.4-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/commons-collections4-4.4-bin/commons-collections4-4.4/commons-collections4-4.4-tests.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/commons-collections4-4.4-bin/commons-collections4-4.4/commons-collections4-4.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LENOVO/Downloads/Compressed/commons-io-2.15.1-bin/commons-io-2.15.1/commons-io-2.15.1.jar"/>
+	<classpathentry kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre-1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
