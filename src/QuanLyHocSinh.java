@@ -5,8 +5,9 @@
 	import java.util.ArrayList;
 	import java.util.Iterator;
 	import java.util.List;
+import java.util.Scanner;
 
-	import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Cell;
 	import org.apache.poi.ss.usermodel.Row;
 	import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class QuanLyHocSinh {
@@ -85,18 +86,68 @@ public class QuanLyHocSinh {
 	        writeDataToExcel(hocSinhs);
 	    }
 
-	    public static void main(String[] args) {
-	        // Example usage:
-	        // Read data from Excel
-	        List<HocSinh> hocSinhs = readDataFromExcel();
+//	    public static void main(String[] args) {
+//	        // Example usage:
+//	        // Read data from Excel
+//	        List<HocSinh> hocSinhs = readDataFromExcel();
+//
+//	        // Delete a record by ID
+//	        int mahsToDelete = 123; // Specify the ID to delete
+//	        deleteRecord(mahsToDelete);
+//
+//	        // Write data to Excel
+//	        writeDataToExcel(hocSinhs);
+//	    }
+	    private List<HocSinh> hocSinhs = new ArrayList<>();
 
-	        // Delete a record by ID
-	        int mahsToDelete = 123; // Specify the ID to delete
-	        deleteRecord(mahsToDelete);
+	    // Phương thức để xóa một HocSinh theo ID từ danh sách
+	    public void deleteHocSinhById(int mahsToDelete) {
+	        Iterator<HocSinh> iterator = hocSinhs.iterator();
 
-	        // Write data to Excel
-	        writeDataToExcel(hocSinhs);
+	        while (iterator.hasNext()) {
+	            HocSinh hocSinh = iterator.next();
+
+	            if (hocSinh.getMahs() == mahsToDelete) {
+	                iterator.remove(); // Xóa HocSinh có ID cụ thể
+	                System.out.println("HocSinh với ID " + mahsToDelete + " đã được xóa thành công.");
+	                return; // Thoát khỏi phương thức sau khi xóa
+	            }
+	        }
+
+	        // Nếu vòng lặp hoàn thành mà không tìm thấy ID cụ thể
+	        System.out.println("HocSinh với ID " + mahsToDelete + " không được tìm thấy trong danh sách.");
 	    }
-	
+
+	    // Phương thức để xử lý đầu vào người dùng và gọi phương thức deleteHocSinhById
+	    public void deleteUserInput() {
+	        Scanner scanner = new Scanner(System.in);
+
+	        System.out.print("Nhập mã học sinh để xóa: ");
+	        if (scanner.hasNextInt()) {
+	            int mahsToDelete = scanner.nextInt();
+	            deleteHocSinhById(mahsToDelete);
+	        } else {
+	            System.out.println("Đầu vào không hợp lệ. Vui lòng nhập một mã học sinh hợp lệ (giá trị số).");
+	        }
+
+	        scanner.close();
+	    }
+
+	    public static void main(String[] args) {
+	        QuanLyHocSinh hocSinhManager = new QuanLyHocSinh();
+
+	        // Ví dụ sử dụng:
+	        // Điền danh sách với dữ liệu (bạn có thể tùy chỉnh phần này)
+	        hocSinhManager.hocSinhs.add(new HocSinh(1, "Học Sinh 1", "Lớp A", 8.5, 18, "Địa chỉ 1"));
+	        hocSinhManager.hocSinhs.add(new HocSinh(2, "Học Sinh 2", "Lớp B", 7.5, 17, "Địa chỉ 2"));
+
+	        // Gọi phương thức nhập liệu người dùng
+	        hocSinhManager.deleteUserInput();
+
+	        // In danh sách cập nhật hoặc thực hiện bất kỳ thao tác nào khác
+	        for (HocSinh hocSinh : hocSinhManager.hocSinhs) {
+	            System.out.println(hocSinh);
+	        }
+	    }
 
 }
