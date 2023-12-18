@@ -93,17 +93,33 @@ public class Main {
                     break;
                   
                 case 6:
-                    System.out.print("Nhập mã học sinh cần xóa: ");
-                    int maCanXoa = scanner.nextInt();
-                    scanner.nextLine(); // Consume the newline character
+                    int maCanXoa = 0;  // Khởi tạo biến để lưu mã học sinh cần xóa
+                    
+                    // Sử dụng vòng lặp để đảm bảo người dùng nhập vào một số nguyên
+                    while (true) {
+                        System.out.print("Nhập mã học sinh cần xóa: ");
+                        
+                        // Kiểm tra xem người dùng đã nhập một số nguyên chưa
+                        if (scanner.hasNextInt()) {
+                            maCanXoa = scanner.nextInt();
+                            break;  // Thoát khỏi vòng lặp nếu đã nhập đúng kiểu dữ liệu
+                        } else {
+                            System.out.println("Vui lòng nhập một số nguyên.");
+                            scanner.nextLine();  // Loại bỏ đầu vào không hợp lệ
+                        }
+                    }
+                    
+                    // Consume the newline character
+                    scanner.nextLine();
 
-                    boolean xoaThanhCong = quanLyHocSinh.xoaHocSinh(maCanXoa);
+                    boolean xoaThanhCong = quanLyHocSinh.xoahocsinh(maCanXoa);
                     if (xoaThanhCong) {
                         System.out.println("Xóa học sinh thành công!");
                     } else {
                         System.out.println("Không tìm thấy học sinh có mã " + maCanXoa);
                     }
-                    break;   
+                    break;
+
 //                case 7:
 //                    // Read data from Excel
 //                    List<HocSinh> excelData = readDataFromExcel();
